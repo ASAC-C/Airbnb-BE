@@ -36,14 +36,16 @@ public class RoomController {
 
     /**
      * Client <-> Controller : 숙소 이미지 경로 목록 가져오기
-     * @param roomId : 숙소 고유 식별자
+     * @param roomKey : 숙소 고유 식별자
      */
     @GetMapping("/image-list")
     @ResponseBody
-    public String roomImageList(@RequestParam("roomId") Integer roomId) {
-        ImagePathDTO imagePathDTO = this.roomService.getImagePath(roomId);
+    public String roomImageList(@RequestParam("roomKey") Integer roomKey) {
+        ImagePathDTO imagePathDTO = this.roomService.getImagePath(roomKey);
         return DTOConverToJson(imagePathDTO);
     }
+
+    @GetMapping("/")
 
     /**
      * DTO 클래스를 json 타입으로 변환

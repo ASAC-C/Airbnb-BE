@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 public class ImagePathDTO {
-    private Integer roomId;
+    private Integer roomKey;
     private List<String> pathList; // @Setter 애노테이션은 컬렉션 타입에 대해서는 동작하지 않는다.
 
     // 기본 값으로 SUCCESS 타입으로 설정해주고 Exception이 발생하면 Exception 타입을 설정한다.

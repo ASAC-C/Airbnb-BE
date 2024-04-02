@@ -23,12 +23,12 @@ public class ImagePathDAO {
 
     /**
      * DAO -> Repository : 데이터베이스에 접근하여 roomdId 값과 일치하는 값 가져오기
-     * @param roomId : 숙소 고유 식별자
+     * @param roomKey : 숙소 고유 식별자
      */
-    public List<ImagePath> selectImagePath(Integer roomId) {
-        List<ImagePath> result = this.imagePathRepository.findByRoomId(roomId);
+    public List<ImagePath> selectImagePath(Integer roomKey) {
+        List<ImagePath> result = this.imagePathRepository.findByRoomKey(roomKey);
         if (result.isEmpty()) {
-            throw new EntityNotFoundException("Entity with roomId " + roomId + " not found");
+            throw new EntityNotFoundException("Entity with roomKey " + roomKey + " not found");
         }
 
         return result;

@@ -23,14 +23,14 @@ public class RoomServiceImpl implements RoomService {
 
     /**
      * Service <-> DAO : 숙소 이미지 경로 목록 가져오기
-     * @param roomId : 숙소 고유 식별자
+     * @param roomKey : 숙소 고유 식별자
      */
     @Override
-    public ImagePathDTO getImagePath(Integer roomId) {
+    public ImagePathDTO getImagePath(Integer roomKey) {
         ImagePathDTO imagePathDTO = new ImagePathDTO();
         try {
-            List<ImagePath> imagePathList = this.imagePathDAO.selectImagePath(roomId);
-            imagePathDTO.setRoomId(imagePathList.get(0).getRoomId());
+            List<ImagePath> imagePathList = this.imagePathDAO.selectImagePath(roomKey);
+            imagePathDTO.setRoomKey(imagePathList.get(0).getRoomKey());
             for (ImagePath dto : imagePathList) {
                 imagePathDTO.addPath(dto.getPath());
             }

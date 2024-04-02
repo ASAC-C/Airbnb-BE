@@ -15,8 +15,8 @@ public class ImagePath {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "roomId")
-    private Integer roomId;
+    @Column(name = "roomKey")
+    private Integer roomKey;
 
     @Column(name = "path")
     private String path;

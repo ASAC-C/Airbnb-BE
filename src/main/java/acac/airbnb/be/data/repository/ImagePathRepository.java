@@ -12,5 +12,5 @@ public interface ImagePathRepository extends JpaRepository<ImagePath, Long> { //
     /* Spring Data JPA에서 자동으로 구현 */
     // =================================
 
-    List<ImagePath> findByRoomId(Integer roomId);
+    List<ImagePath> findByRoomKey(Integer roomKey);
 }

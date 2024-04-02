@@ -10,7 +10,7 @@ public interface RoomService {
     // Create
 
     // Read
-    ImagePathDTO getImagePath(Integer roomId);
+    ImagePathDTO getImagePath(Integer roomKey);
 
     // Update
 
