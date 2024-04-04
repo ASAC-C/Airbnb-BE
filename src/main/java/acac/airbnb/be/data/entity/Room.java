@@ -11,7 +11,6 @@ import java.util.List;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @Entity
 @Table(name = "room")
 public class Room {

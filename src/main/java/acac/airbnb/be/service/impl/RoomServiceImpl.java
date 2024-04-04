@@ -4,6 +4,7 @@ import acac.airbnb.be.data.dao.RoomDAO;
 import acac.airbnb.be.data.dao.MainDAO;
 import acac.airbnb.be.data.dto.RoomDTO;
 import acac.airbnb.be.data.dto.MainDTO;
+import acac.airbnb.be.data.dto.RoomInfoDto;
 import acac.airbnb.be.data.entity.Room;
 import acac.airbnb.be.enums.ResType;
 import acac.airbnb.be.service.RoomService;
@@ -34,39 +35,16 @@ public class RoomServiceImpl implements RoomService {
      */
     @Override
     public MainDTO getMainRoomsInfo() {
-        MainDTO mainDTO = new MainDTO();
         try {
-            List<Room> roomList = this.roomsDAO.selectMainRoomsInfo();
-
-            // Entity conver to DTO
-            for (Room e : roomList) {
-                MainDTO.RoomInfo roomInfo = MainDTO.RoomInfo.builder()
-                        .roomId(e.getId())
-                        .country(e.getCountry())
-                        .location(e.getLocation())
-                        .description(e.getDescription())
-                        .distance(e.getDistance())
-                        .possibleCheckIn(e.getPossibleCheckIn().toString())
-                        .possibleCheckOut(e.getPossibleCheckOut().toString())
-                        .price(e.getPrice())
-                        .rating(0D) // todo. '리뷰' 관련 테이블에서 가져와야하는데..미구현 상태
-                        .build();
-
-                e.getImages().forEach(img -> {
-                    roomInfo.addImagePath(img.getPath());
-                });
-
-                // add
-                mainDTO.addRoomInfo(roomInfo);
-                mainDTO.setResType(ResType.SUCCESS.getNumber());
-            }
-        // todo. 예외 처리의 타입을 지정을 함수로 뺄 수 있나 ?
+            List<Room> roomList = roomsDAO.selectMainRoomsInfo();
+            List<RoomInfoDto> dto = roomList.stream()
+                    .map(RoomInfoDto::of)
+                    .toList();
+            return MainDTO.success(dto);
         } catch (EntityNotFoundException e) {
-            System.err.println(e.getMessage());
-            mainDTO.setResType(ResType.FAIL_ENTITY_NOT_FOUND_EXCEPTION.getNumber());
+            // throw new RuntimeException
+            return MainDTO.failed(ResType.FAIL_ENTITY_NOT_FOUND_EXCEPTION);
         }
-
-        return mainDTO;
     }
 
     /**
