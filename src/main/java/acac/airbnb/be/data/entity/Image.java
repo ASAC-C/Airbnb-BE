@@ -9,15 +9,17 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "imagepath")
-public class ImagePath {
+@Table(name = "image")
+public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "roomKey")
-    private Integer roomKey;
+    private Integer id;
 
     @Column(name = "path")
     private String path;
+
+    // Room 엔티티와 1:N 관계를 가지며 매핑할 이름으로 "room_id" 필드명으로 외래키로 사용한다.
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
 }

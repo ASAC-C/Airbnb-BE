@@ -1,6 +1,6 @@
 package acac.airbnb.be.controller;
 
-import acac.airbnb.be.data.dto.ImagePathDTO;
+import acac.airbnb.be.data.dto.MainDTO;
 import acac.airbnb.be.service.RoomService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/room")
+@RequestMapping("/rooms")
 public class RoomController {
 
     private final RoomService roomService;
@@ -19,31 +19,37 @@ public class RoomController {
     }
 
     /**
-     * 모든 숙소 정보
-     * @param id : 숙소 고유 식별자
+     * task   : 메인 숙소 정보 요청 (-> Service)
+     * return : json
      */
-    @GetMapping("/{id}")
+    @GetMapping("/main")
     @ResponseBody
-    public void info(@PathVariable("id") String id) {
-        try {
-            // todo. id로 데이터베이스 조회
-            return;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return;
-        }
+    public String mainRoomInfo() {
+        MainDTO mainDTO = this.roomService.getMainRoomsInfo();
+        return DTOConverToJson(mainDTO);
     }
 
     /**
-     * Client <-> Controller : 숙소 이미지 경로 목록 가져오기
-     * @param roomKey : 숙소 고유 식별자
+     * task   : 숙소 상세 정보 요청 (-> Service)
+     * param  : roomId
+     * return : json
      */
-    @GetMapping("/image-list")
+    @GetMapping("")
     @ResponseBody
-    public String roomImageList(@RequestParam("roomKey") Integer roomKey) {
-        ImagePathDTO imagePathDTO = this.roomService.getImagePath(roomKey);
-        return DTOConverToJson(imagePathDTO);
+    public String roomImageList(@RequestParam(name = "roomId") Integer roomId) {
+//        ImagePathDTO imagePathDTO = this.roomService.getImagePath(room_id);
+//        return DTOConverToJson(imagePathDTO);
+        return "123";
     }
+
+
+
+
+
+
+
+
+
 
     @GetMapping("/")
 
@@ -51,8 +57,7 @@ public class RoomController {
      * DTO 클래스를 json 타입으로 변환
      * @param object : DTO 클래스
      * @return : json
-     */
-    private String DTOConverToJson(Object object) {
+     */ private String DTOConverToJson(Object object) {
         String json = "";
         try {
             ObjectMapper objectMapper = new ObjectMapper();
