@@ -1,8 +1,11 @@
 package acac.airbnb.be.repository;
 
-import acac.airbnb.be.domain.Member;
+import acac.airbnb.be.domain.MemberDto;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-
+@Repository
 public class JdbcMemberRepository implements  MemberRepository{
     private final DataSource dataSource;
 
@@ -23,7 +26,7 @@ public class JdbcMemberRepository implements  MemberRepository{
      * sql문을 통해 value들을 주입 시킴
      */
     @Override
-    public Member save(Member member) {
+    public MemberDto save(MemberDto member) {
         String sql = "insert into member(user_name, user_last_name, birth_day, email, password) values(?, ?, ?, ?, ?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -56,7 +59,7 @@ public class JdbcMemberRepository implements  MemberRepository{
     }
 
     @Override
-    public Optional<Member> findById(Long id) {
+    public Optional<MemberDto> findById(Long id) {
         String sql = "select * from member where id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -67,7 +70,7 @@ public class JdbcMemberRepository implements  MemberRepository{
             pstmt.setLong(1, id);
             rs = pstmt.executeQuery();
             if(rs.next()) {
-                Member member = new Member();
+                MemberDto member = new MemberDto();
                 member.setId(rs.getLong("id"));
                 member.setEmail(rs.getString("email"));
                 return Optional.of(member);
@@ -83,7 +86,7 @@ public class JdbcMemberRepository implements  MemberRepository{
 
 
     @Override
-    public Optional<Member> findByEmail(String email) {
+    public Optional<MemberDto> findByEmail(String email) {
         String sql = "select * from member where email = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -94,7 +97,7 @@ public class JdbcMemberRepository implements  MemberRepository{
             pstmt.setString(1, email);
             rs = pstmt.executeQuery();
             if (rs.next()) {
-                Member member = new Member();
+                MemberDto member = new MemberDto();
                 member.setId(rs.getLong("id"));
                 member.setEmail(rs.getString("email"));
                 return Optional.of(member);
@@ -112,7 +115,7 @@ public class JdbcMemberRepository implements  MemberRepository{
      *
      */
     @Override
-    public List<Member> findAll() {
+    public List<MemberDto> findAll() {
         String sql = "select * from member";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -121,9 +124,9 @@ public class JdbcMemberRepository implements  MemberRepository{
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
-            List<Member> members = new ArrayList<>();
+            List<MemberDto> members = new ArrayList<>();
             while(rs.next()) {
-                Member member = new Member();
+                MemberDto member = new MemberDto();
                 member.setId(rs.getLong("id"));
                 member.setUserName(rs.getString("user_name"));
                 member.setUserLastName(rs.getString("user_last_name"));
