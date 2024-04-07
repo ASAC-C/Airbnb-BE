@@ -61,7 +61,7 @@ public class JdbcProfileRepository implements ProfileRepository {
             while(rs.next()) {
                 ProfileDto profile = new ProfileDto();
                 profile.setId(rs.getLong("id"));
-                profile.setUseName(rs.getString("user_name"));
+                profile.setUserName(rs.getString("user_name"));
                 profile.setReviewNumber(rs.getInt("review_number"));
                 profile.setYears(rs.getInt("years"));
                 profile.setHobby(rs.getString("hobby"));

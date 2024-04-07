@@ -12,7 +12,7 @@ import lombok.Setter;
 public class ProfileDto {
     private  Long id;
 
-    private String useName;
+    private String userName;
 
     private Integer reviewNumber;
 
