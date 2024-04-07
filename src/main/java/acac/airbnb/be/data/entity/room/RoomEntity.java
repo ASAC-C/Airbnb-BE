@@ -41,7 +41,7 @@ public class RoomEntity {
 
     @NotNull
     @Column(name = "accom_desc")
-    private String accomDesc;
+    private String accommodationDesc;
 
     @NotNull
     @ManyToOne
