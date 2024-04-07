@@ -33,9 +33,16 @@ public class JdbcProfileRepository implements ProfileRepository {
             pstmt = conn.prepareStatement(sql);
             pstmt.setLong(1, id);
             rs = pstmt.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 ProfileDto profileDto = new ProfileDto();
                 profileDto.setId(rs.getLong("id"));
+                profileDto.setUserName(rs.getString("user_name"));
+                profileDto.setReviewNumber(rs.getInt("review_number"));
+                profileDto.setYears(rs.getInt("years"));
+                profileDto.setHobby(rs.getString("hobby"));
+                profileDto.setCountry(rs.getString("country"));
+                profileDto.setFirstReview(rs.getString("first_review"));
+                profileDto.setSecondReview(rs.getString("second_review"));
                 return Optional.of(profileDto);
             } else {
                 return Optional.empty();
@@ -61,7 +68,7 @@ public class JdbcProfileRepository implements ProfileRepository {
             while(rs.next()) {
                 ProfileDto profile = new ProfileDto();
                 profile.setId(rs.getLong("id"));
-                profile.setUseName(rs.getString("user_name"));
+                profile.setUserName(rs.getString("user_name"));
                 profile.setReviewNumber(rs.getInt("review_number"));
                 profile.setYears(rs.getInt("years"));
                 profile.setHobby(rs.getString("hobby"));
