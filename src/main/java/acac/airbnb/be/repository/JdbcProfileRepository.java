@@ -33,9 +33,16 @@ public class JdbcProfileRepository implements ProfileRepository {
             pstmt = conn.prepareStatement(sql);
             pstmt.setLong(1, id);
             rs = pstmt.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 ProfileDto profileDto = new ProfileDto();
                 profileDto.setId(rs.getLong("id"));
+                profileDto.setUserName(rs.getString("user_name"));
+                profileDto.setReviewNumber(rs.getInt("review_number"));
+                profileDto.setYears(rs.getInt("years"));
+                profileDto.setHobby(rs.getString("hobby"));
+                profileDto.setCountry(rs.getString("country"));
+                profileDto.setFirstReview(rs.getString("first_review"));
+                profileDto.setSecondReview(rs.getString("second_review"));
                 return Optional.of(profileDto);
             } else {
                 return Optional.empty();

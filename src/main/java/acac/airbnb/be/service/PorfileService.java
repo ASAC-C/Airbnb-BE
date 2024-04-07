@@ -19,6 +19,7 @@ public class PorfileService {
     }
 
     public Optional<ProfileDto> findOne(Long profileId){
+        System.out.println("서비스 로그: "+ profileRepository.findById(profileId));
         return profileRepository.findById(profileId);
     }
 }
