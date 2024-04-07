@@ -7,12 +7,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ResType {
-    NONE("", -1),
-    SUCCESS("", 0),
-    FAIL_EXCEPTION("", 1),
-    FAIL_ENTITY_NOT_FOUND_EXCEPTION("", 2);
-    // ================================================ //
-    private final String message;
+    NONE(-1),
+    SUCCESS(0),
+    FAIL_EXCEPTION(1),
+    FAIL_NO_SUCH_ELEMENT_EXCEPTION(2);
+
     @JsonValue
     private final Integer number;
 }

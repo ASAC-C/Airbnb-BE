@@ -1,54 +1,54 @@
 package acac.airbnb.be.data.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 @Setter
 @Getter
-@Entity
-@Table(name = "room")
-public class Room {
+@Table(name = "main")
+public class MainEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "room_id")
     private Integer id;
+
+    @NotNull
+    @Column(name = "room_id")
+    private Integer roomId;
 
     @NotNull
     @Column(name = "room_name")
     private String roomName;
 
     @NotNull
-    @Column(name = "country")
     private String country;
 
     @NotNull
-    @Column(name = "location")
     private String location;
 
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "distance")
-    private Integer distance;
-
     @NotNull
-    @Column(name = "possible_check_in") // 체크인 날짜
+    @Column(name = "possible_check_in")
     private LocalDate possibleCheckIn;
 
     @NotNull
-    @Column(name = "possible_check_out") // 체크아웃 날짜
+    @Column(name = "possible_check_out")
     private LocalDate possibleCheckOut;
 
     @NotNull
-    @Column(name = "price")
     private Integer price;
 
+    private String description;
+    private Integer distance;
+    private Double rating;
+
+    // 현재는 필요 없는 엔티티 같아서 주석 처리
+    /*
     @NotNull
     @Column(name = "max_guests")
     private Integer maxGuests;
@@ -56,10 +56,10 @@ public class Room {
     @Column(name = "bed_num")
     private Integer bedNum;
 
-    @Column(name = "room_num") // 침실 수
+    @Column(name = "room_num")
     private Integer roomNum;
 
-    @Column(name = "bath_num") // 욕실 수
+    @Column(name = "bath_num")
     private Integer bathNum;
 
     @NotNull
@@ -69,12 +69,8 @@ public class Room {
     @NotNull
     @Column(name = "host_key")
     private Integer hostKey;
+    */
 
-    // room -|--------||- image
-    @OneToMany(mappedBy = "room")
-    private List<Image> images = new ArrayList<>();
-
-    // room -|--------| room_option
-//    @OneToOne(mappedBy = "room")
-//    private RoomOption roomOption;
+    @OneToMany(mappedBy = "mainEntity")
+    private List<ImageEntity> images = new ArrayList<>();
 }
