@@ -32,7 +32,7 @@ public class Lodging {
                 .reviewCount(r.getReviewCount())
                 .hostName(r.getHostName())
                 .hostExperience(r.getHostExperience())
-                .accommodationDescription(r.getAccomDesc())
+                .accommodationDescription(r.getAccommodationDesc())
                 .service(new RoomService(r))
                 .accommodation(new RoomAccommodation(r))
                 .amenities(new Amenities(r))
