@@ -43,6 +43,7 @@ public class JdbcProfileRepository implements ProfileRepository {
                 profileDto.setCountry(rs.getString("country"));
                 profileDto.setFirstReview(rs.getString("first_review"));
                 profileDto.setSecondReview(rs.getString("second_review"));
+                System.out.println("프로필: " + profileDto);
                 return Optional.of(profileDto);
             } else {
                 return Optional.empty();
