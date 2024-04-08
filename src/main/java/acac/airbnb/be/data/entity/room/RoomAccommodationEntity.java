@@ -3,16 +3,15 @@ package acac.airbnb.be.data.entity.room;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
-import lombok.Setter;
 
-@Setter
+//@Setter
 @Getter
 @Entity
 @Table(name = "room_accommodation")
 public class RoomAccommodationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer roomId;
 
     @NotNull
     private String space;

@@ -16,7 +16,7 @@ import java.util.List;
 public class RoomEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer roomId;
 
     @NotNull
     private String title;
@@ -43,8 +43,8 @@ public class RoomEntity {
     @Column(name = "accom_desc")
     private String accommodationDesc;
 
-    @NotNull
     @ManyToOne
+    //@JoinColumn(name = "room_id", referencedColumnName = "room_id")
     private MainEntity mainEntity;
 
     // OneToMany (@JoinColumn을 사용하지 않는 경우)

@@ -23,7 +23,7 @@ public class Lodging {
     private RoomAccommodation accommodation;
 
     // 편의 시설
-    private Amenities amenities;
+    private RoomAmenities amenities;
 
     public static Lodging of(RoomEntity r) {
         return Lodging.builder()
@@ -35,7 +35,7 @@ public class Lodging {
                 .accommodationDescription(r.getAccommodationDesc())
                 .service(new RoomService(r))
                 .accommodation(new RoomAccommodation(r))
-                .amenities(new Amenities(r))
+                .amenities(new RoomAmenities(r))
                 .build();
     }
 }

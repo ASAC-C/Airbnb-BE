@@ -34,7 +34,7 @@ public class MainRoomInfo {
                 .distance(e.getDistance())
                 .price(e.getPrice())
                 .rating(0D) // todo. '리뷰' 미구현 상태
-                .images(e.getImages().stream()
+                .images(e.getImageEntityList().stream()
                         .map(ImageEntity::getPath)
                         .toList())
                 .build();

@@ -12,7 +12,7 @@ import lombok.Setter;
 public class RoomServiceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer roomId;
 
     @NotNull
     private String title;

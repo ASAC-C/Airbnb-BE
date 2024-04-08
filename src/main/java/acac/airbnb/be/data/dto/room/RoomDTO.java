@@ -22,7 +22,7 @@ public class RoomDTO extends ResultDTO {
         return RoomDTO.builder()
                 .roomId(r.getMainEntity().getId())
                 .title(r.getMainEntity().getRoomName())
-                .images(r.getMainEntity().getImages()
+                .images(r.getMainEntity().getImageEntityList()
                         .stream()
                         .map(ImageEntity::getPath)
                         .toList())

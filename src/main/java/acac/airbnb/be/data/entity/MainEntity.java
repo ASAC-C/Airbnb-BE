@@ -1,10 +1,12 @@
 package acac.airbnb.be.data.entity;
 
+import acac.airbnb.be.data.entity.room.RoomEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +15,17 @@ import java.util.List;
 @Setter
 @Getter
 @Table(name = "main")
-public class MainEntity {
+public class MainEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    // 이후에 사용할 수 있는 코드
+    /*
     @NotNull
-    @Column(name = "room_id")
+    @Column(name = "room_id", unique = true)
     private Integer roomId;
+    */
 
     @NotNull
     @Column(name = "room_name")
@@ -72,5 +77,8 @@ public class MainEntity {
     */
 
     @OneToMany(mappedBy = "mainEntity")
-    private List<ImageEntity> images = new ArrayList<>();
+    private List<ImageEntity> imageEntityList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "mainEntity")
+    private List<RoomEntity> roomEntityList = new ArrayList<>();
 }

@@ -3,19 +3,20 @@ package acac.airbnb.be.data.dto.room;
 import acac.airbnb.be.data.entity.room.RoomEntity;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class RoomService {
-    private String title;
-    private String description;
+
+    private List<String> serviceInfoList = new ArrayList<>();
 
     public RoomService(RoomEntity r) {
-        System.out.println(r.getRoomServiceEntity());
         r.getRoomServiceEntity().forEach(x -> {
-            title = x.getTitle();
-            description = x.getDescription();
+            serviceInfoList.add(x.getTitle() + "/" + x.getDescription());
         });
     }
 }

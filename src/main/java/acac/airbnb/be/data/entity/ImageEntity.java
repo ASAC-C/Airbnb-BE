@@ -18,6 +18,6 @@ public class ImageEntity {
     private String path;
 
     @ManyToOne
-    @JoinColumn(name = "room_id")
+//    @JoinColumn(name = "room_id", referencedColumnName = "room_id")
     private MainEntity mainEntity;
 }

@@ -3,18 +3,20 @@ package acac.airbnb.be.data.dto.room;
 import acac.airbnb.be.data.entity.room.RoomEntity;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Amenities {
-    private String title;
-    private Integer imageType;
+public class RoomAmenities {
 
-    public Amenities(RoomEntity r) {
+    private List<String> amenitiesList = new ArrayList<>();
+
+    public RoomAmenities(RoomEntity r) {
         r.getRoomAmenitiesEntity().forEach(x -> {
-            title = x.getTitle();
-            imageType = x.getImageType();
+            amenitiesList.add(x.getTitle() + "/" + x.getImageType());
         });
     }
 }
