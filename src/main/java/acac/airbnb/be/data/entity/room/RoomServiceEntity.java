@@ -5,14 +5,14 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
 @Entity
+@Getter
+@Setter
 @Table(name = "room_service")
 public class RoomServiceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer roomId;
+    private Integer id;
 
     @NotNull
     private String title;

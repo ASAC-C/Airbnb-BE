@@ -33,4 +33,16 @@ public class RoomController {
     public ResultDTO roomImageList(@RequestParam("roomId") Integer roomId) {
         return roomService.getRoomInfo(roomId);
     }
+
+    /**
+     * task   : 숙소 상세 정보 요청 (-> Service)
+     * param  : 숙소 고유 아이디
+     * return : ResultDTO
+     */
+    @GetMapping("/review")
+    public ResultDTO roomReviewList(
+            @RequestParam("roomId") int roomId,
+            @RequestParam(name = "filter", defaultValue = "") String filter) {
+        return roomService.getRoomReviewFilter(roomId, filter);
+    }
 }

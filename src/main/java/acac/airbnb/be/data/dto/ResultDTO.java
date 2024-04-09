@@ -3,8 +3,10 @@ package acac.airbnb.be.data.dto;
 import acac.airbnb.be.enums.ResType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
 public class ResultDTO {
     private String message;

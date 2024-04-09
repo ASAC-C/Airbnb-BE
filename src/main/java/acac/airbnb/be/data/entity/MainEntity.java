@@ -12,30 +12,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @Table(name = "main")
 public class MainEntity implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "room_id")
+    private Integer roomId;
 
-    // 이후에 사용할 수 있는 코드
+//region @JoinColumn - referencedColumnName 테스트 코드
     /*
     @NotNull
     @Column(name = "room_id", unique = true)
     private Integer roomId;
     */
+//endregion
 
     @NotNull
     @Column(name = "room_name")
     private String roomName;
+
+    @Column(name = "description")
+    private String description;
 
     @NotNull
     private String country;
 
     @NotNull
     private String location;
+
+    @Column(name = "distance")
+    private Integer distance;
+
+    @NotNull
+    private Integer price;
 
     @NotNull
     @Column(name = "possible_check_in")
@@ -45,40 +55,11 @@ public class MainEntity implements Serializable {
     @Column(name = "possible_check_out")
     private LocalDate possibleCheckOut;
 
-    @NotNull
-    private Integer price;
-
-    private String description;
-    private Integer distance;
-    private Double rating;
-
-    // 현재는 필요 없는 엔티티 같아서 주석 처리
-    /*
-    @NotNull
-    @Column(name = "max_guests")
-    private Integer maxGuests;
-
-    @Column(name = "bed_num")
-    private Integer bedNum;
-
-    @Column(name = "room_num")
-    private Integer roomNum;
-
-    @Column(name = "bath_num")
-    private Integer bathNum;
-
-    @NotNull
-    @Column(name = "host_description")
-    private String hostDescription;
-
-    @NotNull
-    @Column(name = "host_key")
-    private Integer hostKey;
-    */
-
-    @OneToMany(mappedBy = "mainEntity")
-    private List<ImageEntity> imageEntityList = new ArrayList<>();
-
+    // 숙소
     @OneToMany(mappedBy = "mainEntity")
     private List<RoomEntity> roomEntityList = new ArrayList<>();
+
+    // 이미지
+    @OneToMany(mappedBy = "mainEntity")
+    private List<ImageEntity> imageEntityList = new ArrayList<>();
 }

@@ -1,6 +1,7 @@
 package acac.airbnb.be.data.entity.room;
 
 import acac.airbnb.be.data.entity.MainEntity;
+import acac.airbnb.be.data.entity.review.ReviewEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -9,27 +10,31 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter
-@Getter
 @Entity
+@Getter
+@Setter
 @Table(name = "room")
 public class RoomEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer roomId;
+    private Integer id;
+
+//region @JoinColumn - referencedColumnName 테스트 코드
+    /*
+     @ManyToOne
+    @JoinColumn(name = "room_id", referencedColumnName = "room_id")
+    private MainEntity mainEntity;
+    */
+//endregion
 
     @NotNull
-    private String title;
-
-    @NotNull
-    private String location;
+    @Column(name = "room_name")
+    private String roomName;
 
     @NotNull
     private String description;
 
     @NotNull
-    @Column(name = "review_count")
-    private Integer reviewCount;
+    private String location;
 
     @NotNull
     @Column(name = "host_name")
@@ -40,16 +45,23 @@ public class RoomEntity {
     private String hostExperience;
 
     @NotNull
-    @Column(name = "accom_desc")
-    private String accommodationDesc;
+    @Column(name = "accommodation_desc")
+    private String accommodationDesc; // 숙소 상세 소개 내용
 
+    // 메인
     @ManyToOne
-    //@JoinColumn(name = "room_id", referencedColumnName = "room_id")
     private MainEntity mainEntity;
 
-    // OneToMany (@JoinColumn을 사용하지 않는 경우)
-    // 외래 키는 기본적으로 다측 엔티티의 테이블에 추가되며, 부모 엔티티의 기본 키와 매핑
-    // 외래 키를 관리하는 쪽이 주인이며, 주인을 나타내는 mappedBy 속성은 주인이 아닌 쪽에 설정한다.
+    // 리뷰
+    @OneToMany(mappedBy = "roomEntity")
+    private List<ReviewEntity> reviewEntityList = new ArrayList<>();
+
+    /**
+     * 세부 정보 Entity
+     * - RoomServiceEntity       : 대표(?) 서비스
+     * - RoomAmenitiesEntity     : 편의 시설
+     * - RoomAccommodationEntity : 숙소 시설
+     */
 
     @OneToMany(mappedBy = "roomEntity")
     private List<RoomServiceEntity> roomServiceEntity = new ArrayList<>();

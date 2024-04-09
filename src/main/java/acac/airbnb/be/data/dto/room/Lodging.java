@@ -29,7 +29,6 @@ public class Lodging {
         return Lodging.builder()
                 .location(r.getLocation())
                 .description(r.getDescription())
-                .reviewCount(r.getReviewCount())
                 .hostName(r.getHostName())
                 .hostExperience(r.getHostExperience())
                 .accommodationDescription(r.getAccommodationDesc())

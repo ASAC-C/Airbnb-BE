@@ -4,10 +4,12 @@ import acac.airbnb.be.data.dto.ResultDTO;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Getter
+@Setter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class MainDTO extends ResultDTO {
 
