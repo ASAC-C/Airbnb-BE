@@ -15,7 +15,7 @@ public class ProfileController {
     private final PorfileService porfileService;
 
     @GetMapping("/profiles/{id}")
-    public ProfileDto profile(@PathVariable Long id){
+    public ProfileDto profile(@PathVariable("id") Long id){
         return  porfileService.findOne(id)
                 .orElseThrow(() -> new RuntimeException("프로필을 찾을 수 없음")); // 프로필이 존재하지 않으면 예외 발생
     }
