@@ -16,6 +16,4 @@ public class ResultDto<T> {
     public static ResultDto<Void> failed(String message) {
         return new ResultDto<Void>(false, message, null);
     }
-
-
 }
