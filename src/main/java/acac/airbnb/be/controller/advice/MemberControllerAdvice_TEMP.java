@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
 @RestControllerAdvice(basePackageClasses = MemberController.class)
-public class MemberControllerAdvice {
+public class MemberControllerAdvice_TEMP {
 
 //region 반환형으로 Class 타입으로 지정한 함수 형태
     /*
