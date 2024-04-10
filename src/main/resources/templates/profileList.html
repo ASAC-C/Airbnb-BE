@@ -2,34 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <div class="container">
-    <div>
-        <table>
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>이름</th>
-                <th>리뷰 수</th>
-                <th>가입 기간</th>
-                <th>취미</th>
-                <th>나라</th>
-                <th>리뷰1</th>
-                <th>리뷰2</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="profile : ${profiles}">
-                <td th:text="${profile.id}"></td>
-                <td th:text="${profile.userName}"></td>
-                <td th:text="${profile.reviewNumber}"></td>
-                <td th:text="${profile.years}"></td>
-                <td th:text="${profile.hobby}"></td>
-                <td th:text="${profile.country}"></td>
-                <td th:text="${profile.firstReview}"></td>
-                <td th:text="${profile.secondReview}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <h2>프로필 상세 정보</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>이름</th>
+            <th>리뷰 수</th>
+            <th>가입 기간</th>
+            <th>취미</th>
+            <th>나라</th>
+            <th>리뷰1</th>
+            <th>리뷰2</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${profile.id}"></td>
+            <td th:text="${profile.userName}"></td>
+            <td th:text="${profile.reviewNumber}"></td>
+            <td th:text="${profile.years}"></td>
+            <td th:text="${profile.hobby}"></td>
+            <td th:text="${profile.country}"></td>
+            <td th:text="${profile.firstReview}"></td>
+            <td th:text="${profile.secondReview}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div> <!-- /container -->
 </body>
 </html>
