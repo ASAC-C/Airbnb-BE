@@ -17,6 +17,7 @@ import java.util.Optional;
 public class JdbcMemberRepository implements  MemberRepository{
     private final DataSource dataSource;
 
+    // 생성자를 통해 dataSource 주입
     public JdbcMemberRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
@@ -32,8 +33,9 @@ public class JdbcMemberRepository implements  MemberRepository{
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
-            conn = getConnection();
+            conn = getConnection(); //연결
             pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            // valuse의 ?에 해당하는 값 설정
             pstmt.setString(1, member.getUserName());
             pstmt.setString(2, member.getUserLastName());
             if (member.getBirthDay() == null) {
@@ -43,7 +45,7 @@ public class JdbcMemberRepository implements  MemberRepository{
             }
             pstmt.setString(4, member.getEmail());
             pstmt.setString(5, member.getPassword());
-            pstmt.executeUpdate();
+            pstmt.executeUpdate(); // SQL 문 실행
             rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
                 member.setId(rs.getLong(1));
@@ -75,7 +77,7 @@ public class JdbcMemberRepository implements  MemberRepository{
                 member.setEmail(rs.getString("email"));
                 return Optional.of(member);
             } else {
-                return Optional.empty();
+                return Optional.empty(); // 조회된 member가 없을 경우 empty Optional 반환
             }
         } catch (Exception e) {
             throw new IllegalStateException(e);
