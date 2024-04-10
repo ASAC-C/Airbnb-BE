@@ -12,18 +12,18 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class MemberService {
-    private final MemberRepository memberRepository;
+    private final MemberRepository memberRepository; //의존성 주입
 
     @Transactional
     public void createUser(MemberDto memberDto){
-        validateDuplicateMemberEmail(memberDto.getEmail());
+        validateDuplicateMemberEmail(memberDto.getEmail()); //이메일로 중복 회원 검사
         MemberDto savedMemberDto = memberRepository.save(memberDto);
     }
 
     public void validateDuplicateMemberEmail(String email){
         memberRepository.findByEmail(email)
                 .ifPresent(result ->{
-                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+                    throw new IllegalStateException("이미 존재하는 회원입니다."); //동일한 이메일 발견시 예외 발생
                 });
     }
 
